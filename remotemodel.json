@@ -1,0 +1,143 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"version": "0.0.1",
+		"title": "Memir Service",
+		"description": "An API for pdf files using an openapi-3.0.0 specification"
+	},
+	"servers": [{
+			"url": "https://memir-service-development.bettywebblocks.com/api/v1",
+			"description": "Development"
+		},
+		{
+			"url": "https://memir-service-test.bettywebblocks.com/api/v1",
+			"description": "Test"
+		},
+		{
+			"url": "https://memir-service-acceptance.bettywebblocks.com/api/v1",
+			"description": "Acceptance"
+		},
+		{
+			"url": "https://memir-service.bettywebblocks.com/api/v1",
+			"description": "Production"
+		}
+	],
+	"security": [{
+		"api_key": []
+	}],
+	"paths": {
+		"/pdf": {
+			"get": {
+				"summary": "Returns all pdf files from the system that the user has access to",
+				"operationId": "findAll",
+				"responses": {
+					"200": {
+						"description": "200 response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/Pdf"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"summary": "Creates a new pdf file to the system that the user has access to",
+				"operationId": "insertOne",
+				"responses": {
+					"200": {
+						"description": "200 response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Pdf"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/pdf/{id}": {
+			"get": {
+				"summary": "Returns a specific pdf file by ID from the system that the user has access to",
+				"operationId": "findOne",
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "ID of pdf to fetch",
+					"required": true,
+					"schema": {
+						"type": "integer",
+						"format": "int64"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "200 response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Pdf"
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"summary": "Updates a specific pdf file by ID from the system that the user has access to",
+				"operationId": "updateOne",
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "ID of pdf to fetch",
+					"required": true,
+					"schema": {
+						"type": "integer",
+						"format": "int64"
+					}
+				}],
+				"responses": {
+					"200": {
+						"description": "200 response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Pdf"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Pdf": {
+				"type": "object",
+				"properties": {
+					"fileName": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"in": "header",
+				"name": "api_key"
+			}
+		}
+	}
+}
