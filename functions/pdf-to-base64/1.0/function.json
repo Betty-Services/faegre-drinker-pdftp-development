@@ -1,0 +1,32 @@
+{
+	"description": "PDF",
+	"label": "PDF to Base64",
+	"category": "Misc",
+	"icon": {
+		"color": "Green",
+		"name": "PlusIcon"
+	},
+	"options": [
+		{
+			"meta": {
+				"type": "Text"
+			},
+			"name": "url",
+			"label": "Url",
+			"info": "Url",
+			"advanced": false
+		},
+		{
+			"meta": {
+				"type": "Output",
+				"output": {
+					"type": "Text"
+				}
+			},
+			"name": "result",
+			"label": "Result",
+			"info": "The result"
+		}
+	],
+	"yields": "NONE"
+}
